@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./animate.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+
+
+    .container {
+      width: 100%;
+      height: 100vh;
+      background-image: url(./pawpatrol/pawpatrol_background.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #game {
+      width: 50%;
+      height: 100%;
+      /* border: 1px solid rgb(110, 56, 56); */
+      padding-top: 3%;
+      padding-left: 5%;
+      position: absolute;
+    }
+
+
+    .card {
+      width: 180px;
+      height: 180px;
+      position: relative;
+      /* 設定子元素在 3D 空間內 */
+      transform-style: preserve-3d;
+      float: left;
+      margin: 10px;
+      transition: transform 1s;
+    }
+
+    .card-front {
+      width: 100%;
+      height: 100%;
+      background-image: url(./pawpatrol/1pawpatrol.jpg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      /* 把花色翻轉到下面 */
+      transform: rotateY(180deg);
+      /* 翻過來後隱藏另一面 */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .card-back {
+      width: 100%;
+      height: 100%;
+      background-image: url(./pawpatrol/pawpatrol_back.jpg);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      /* 翻過來後隱藏另一面 */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .card-open {
+      transform: rotateY(180deg);
+    }
+
+    .memo {
+      width: 40%;
+      height: 80%;
+      margin: auto;
+      background-color: blanchedalmond;
+      opacity: 0.8;
+      border-radius: 10px;
+      /* border: 1px solid black; */
+      position: absolute;
+      right: 5%;
+      top: 10%;
+      transition: .5s;
+    }
+
+    .memo tr:nth-child(1) td:nth-child(1) h1 {
+      color: navy;
+    }
+
+    .memo tr:nth-child(1) td:nth-child(2) h1 {
+      color: orangered;
+    }
+
+    .memo tr:nth-child(2) td:nth-child(1) h1 {
+      color: #FFB81B;
+    }
+
+    .memo tr:nth-child(2) td:nth-child(2) h1 {
+      color: green;
+    }
+
+    .memo tr:nth-child(3) td:nth-child(1) h1 {
+      color: #9370DB;
+    }
+
+    .memo tr:nth-child(3) td:nth-child(2) h1 {
+      color: #FF69B4;
+    }
+
+    .memo tr:nth-child(4) td:nth-child(1) h1 {
+      color: red;
+    }
+
+    .memo tr:nth-child(4) td:nth-child(2) h1 {
+      color: darkolivegreen;
+    }
+
+    .memo p {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- <div class="title animate__animated animate__bounce animate__delay-1s" >汪汪隊立大功</div> -->
+    <div id="game"></div>
+    <table class="memo">
+      <tr>
+        <td>
+          <h1>阿奇</h1>
+          <p>德國牧羊犬，7歲，雄性，職位是警察、特務，也是汪汪隊的地下隊長。熱心、穩重且責任心強，對萊德非常敬重且忠誠，性格比較一板一眼，偶爾會有過度認真的傾向。</p>
+        </td>
+        <td>
+          <h1>路馬</h1>
+          <p>拉布拉多犬，5歲，雄性，職位是水上救難、海巡。非常喜歡水，擅長各種水上運動，說話的鼻音很重，話不多，但本身很幽默。</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h1>小礫</h1>
+          <p>英國鬥牛犬，5歲，雄性，職位是工程人員。食量很大，典型的吃貨，也是隊上的美食專家。</p>
+        </td>
+        <td>
+          <h1>灰灰</h1>
+          <p>米克斯，6歲，雄性，職位是清潔回收與維修技師。有厭水症，討厭碰水、游泳與洗澡。</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h1>珠珠</h1>
+          <p>哈士奇，8歲，雌性，職位是雪地與高山救援，也是隊上年紀最大的狗狗成員。熱心親切，最喜歡幫助別人，因為在南極救了傑克一命，進而認識並加入汪汪隊。</p>
+        </td>
+        <td>
+          <h1>天天</h1>
+          <p>可卡貴賓犬，7歲，雌性，職位是空勤救難，原始隊員中唯一的女性。身材嬌小輕盈，後空翻與狗狗跳舞機的高手，力氣與體能也很優秀。</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h1>毛毛</h1>
+          <p>大麥町，6歲，雄性，職位是消防員與EMT。活潑好動，典型的冒失屬性，常在集合前以各種方式撞倒其他成員，或做事、玩耍時不小心出糗。</p>
+        </td>
+        <td>
+          <h1>小克</h1>
+          <p>吉娃娃，4歲，雄性，職位是野地救援，也是隊上年紀最小的狗狗成員。雙語聲線，說話喜歡混雜兩種語言(ex.在中文版是中文搭配英文；英文版則是英文搭配西班牙文)。聽力很好，擅長聽聲辯位。</p>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+
+
+
+  <script src="./jquery-3.6.0.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    const audio = new Audio()
+    $('.memo td').css('opacity', '0')
+
+    Swal.fire({
+      title: '汪汪隊立大功',
+      text: '請配對狗狗們的交通工具',
+      imageUrl: './pawpatrol/pawpatrolpng.png',
+      imageWidth: 400,
+      imageHeight: 400,
+      imageAlt: 'Paw Patrol',
+    })
+
+    $('.memo').slideDown("slow")
+
+    // 產生 16 張卡片
+    for (let i = 0; i < 16; i++) {
+      $('#game').append(`
+        <div class="card">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      `)
+    }
+    // 決定數字並打散
+    for (let i = 0; i < 8; i++) {
+      // 決定數字
+      const num = i % 8 + 1
+      $('.card').eq(i).find('.card-front').css('background-image', `url(./pawpatrol/${num}pawpatrol.jpg)`)
+      $('.card').eq(i).attr('data-card', num)
+
+      // 打散
+      const target = Math.round(Math.random() * 7)
+      $('.card').eq(target).insertAfter($('.card').eq(i))
+    }
+
+
+    for (let i = 8; i < 16; i++) {
+      // 決定數字
+      const num = i % 8 + 1
+      $('.card').eq(i).find('.card-front').css('background-image', `url(./pawpatrol/${num}car.jpg)`)
+      // 新增屬性 data-card(自己定義的，規範'data-'開頭加資料名稱)，'data-'屬性用於儲存頁面或應用程序私有的自定義數據
+      $('.card').eq(i).attr('data-card', num)
+
+      // 打散
+      // 隨機的目標
+      const target = Math.round(Math.random() * 7)
+      $('.card').eq(target).insertAfter($('.card').eq(i))
+    }
+
+    // 翻牌
+    $('#game').on('click', '.card', function () {
+      // 最多只能翻兩張牌，且這張牌還沒翻開
+      if ($('.card-open').length < 2 && !$(this).hasClass('card-open')) {
+        $(this).addClass('card-open')
+      }
+
+      // 如果翻開兩張了
+      if ($('.card-open').length === 2) {
+        // 如果兩張數字一樣
+        if ($('.card-open').eq(0).attr('data-card') === $('.card-open').eq(1).attr('data-card')) {
+          if ($('.card-open').attr('data-card') === "1") {
+            $('.memo td').eq(0).css('opacity', '1')
+
+          } else if ($('.card-open').attr('data-card') === "2") {
+            $('.memo td').eq(1).css('opacity', '1')
+
+          } else if ($('.card-open').attr('data-card') === "3") {
+            $('.memo td').eq(2).css('opacity', '1')
+
+          } else if ($('.card-open').attr('data-card') === "4") {
+            $('.memo td').eq(3).css('opacity', '1')
+
+          } else if ($('.card-open').attr('data-card') === "5") {
+            $('.memo td').eq(4).css('opacity', '1')
+
+          } else if ($('.card-open').attr('data-card') === "6") {
+            $('.memo td').eq(5).css('opacity', '1')
+
+          } else if ($('.card-open').attr('data-card') === "7") {
+            $('.memo td').eq(6).css('opacity', '1')
+
+          } else if ($('.card-open').attr('data-card') === "8") {
+            $('.memo td').eq(7).css('opacity', '1')
+
+          }
+
+          // 使用 card-ok 標記已完成並淡出
+          $('.card-open').addClass('card-ok')
+          // 將 card-front 淡出而不是 .card，因為對 card 淡出會把 3d 壓平
+          $('.card-open .card-front').fadeTo(3000, 0)
+        }
+
+
+        // 不管一不一樣都翻回來
+        setTimeout(() => {
+          // 如果 .card-open 裡的 card-front 透明度不是 1，把 .card-open 透明度設為 0
+          // .each() 類似 for of，裡面的 $(this) 代表迴圈正在跑的元素
+          $('.card-open').each(function () {
+            if ($(this).find('.card-front').css('opacity') != 1) {
+              $(this).css('opacity', 0)
+            }
+          })
+
+          $('.card-open').removeClass('card-open')
+          if ($('.card-ok').length === 16) {
+            $('.memo').remove()
+            Swal.fire({
+              title: '恭喜過關'
+            })
+            audio.src = './pawpatrol/yay.mp3'
+            audio.play()
+          }
+        }, 1500)
+      }
+    })
+  </script>
+</body>
+
+</html>
